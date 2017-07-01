@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A83C85891F081B9A0089D63D /* ofxTesseract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C836C1F080BA30089D63D /* ofxTesseract.cpp */; };
+		A83C858B1F0836B40089D63D /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85791F080DAE0089D63D /* ofxCvColorImage.cpp */; };
+		A83C858C1F0836B40089D63D /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C857C1F080DAE0089D63D /* ofxCvContourFinder.cpp */; };
+		A83C858D1F0836B40089D63D /* ofxCvFloatImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C857E1F080DAE0089D63D /* ofxCvFloatImage.cpp */; };
+		A83C858E1F0836B40089D63D /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85801F080DAE0089D63D /* ofxCvGrayscaleImage.cpp */; };
+		A83C858F1F0836B40089D63D /* ofxCvHaarFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85821F080DAE0089D63D /* ofxCvHaarFinder.cpp */; };
+		A83C85901F0836B40089D63D /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85841F080DAE0089D63D /* ofxCvImage.cpp */; };
+		A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85861F080DAE0089D63D /* ofxCvShortImage.cpp */; };
+		A83C85921F0836D60089D63D /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83C856F1F080DAE0089D63D /* opencv.a */; };
 		A8A8F7CE1F024B6800673BD1 /* flite_voice_list.c in Sources */ = {isa = PBXBuildFile; fileRef = A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */; };
 		A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */; };
 		A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8EF1F02BB9C007CF357 /* ofxButton.cpp */; };
@@ -284,6 +292,7 @@
 		A83C85861F080DAE0089D63D /* ofxCvShortImage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvShortImage.cpp; sourceTree = "<group>"; };
 		A83C85871F080DAE0089D63D /* ofxCvShortImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCvShortImage.h; sourceTree = "<group>"; };
 		A83C85881F080DAE0089D63D /* ofxOpenCv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
+		A83C85951F0836E90089D63D /* opencv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = opencv.a; sourceTree = "<group>"; };
 		A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = flite_voice_list.c; sourceTree = "<group>"; };
 		A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
 		A8E3E8EE1F02BB9C007CF357 /* ofxBaseGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
@@ -317,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A83C85921F0836D60089D63D /* opencv.a in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -939,6 +949,23 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		A83C85931F0836E90089D63D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A83C85941F0836E90089D63D /* osx */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A83C85941F0836E90089D63D /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				A83C85951F0836E90089D63D /* opencv.a */,
+			);
+			name = osx;
+			path = ../../../addons/ofxOpenCv/libs/opencv/lib/osx;
+			sourceTree = "<group>";
+		};
 		A8E3E8EB1F02BB9C007CF357 /* ofxGui */ = {
 			isa = PBXGroup;
 			children = (
@@ -1001,6 +1028,7 @@
 				BB4B014C10F69532006C3DED /* addons */,
 				6948EE371B920CB800B5AC1A /* local_addons */,
 				E4B69B5B0A3A1756003C02F2 /* emptyExampleDebug.app */,
+				A83C85931F0836E90089D63D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1111,6 +1139,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A83C858B1F0836B40089D63D /* ofxCvColorImage.cpp in Sources */,
+				A83C858C1F0836B40089D63D /* ofxCvContourFinder.cpp in Sources */,
+				A83C858D1F0836B40089D63D /* ofxCvFloatImage.cpp in Sources */,
+				A83C858E1F0836B40089D63D /* ofxCvGrayscaleImage.cpp in Sources */,
+				A83C858F1F0836B40089D63D /* ofxCvHaarFinder.cpp in Sources */,
+				A83C85901F0836B40089D63D /* ofxCvImage.cpp in Sources */,
+				A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */,
 				A83C85891F081B9A0089D63D /* ofxTesseract.cpp in Sources */,
 				A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */,
 				A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */,

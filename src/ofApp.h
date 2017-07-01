@@ -23,6 +23,9 @@
 #include "HTS_engine.h"
 #include "ofxGui.h"
 
+// opencv
+#include "ofxOpenCv.h"
+
 // tess
 #include "ofxTesseract.h"
 
@@ -47,16 +50,18 @@ class ofApp : public ofBaseApp{
     void gotMessage(ofMessage msg);
     void audioOut(float * output, int bufferSize, int nChannels);
     
-    void synthNewSpeech();
+    void synthNewSpeech(string utterance);
     void exit();
     
     // tesseract
     string runOcr(ofPixels& pix, float scale, int medianSize);
     
     ofxTesseract tess;
-    ofImage img, scaled;
     string ocrResult;
-    
+
+    ofImage rgbImage;
+    ofImage flipImage;
+    ofxCvGrayscaleImage grayImage;
     
     float 	pan;
     int		sampleRate;
@@ -82,5 +87,9 @@ class ofApp : public ofBaseApp{
     ofxFloatSlider betaSlider;
     ofxFloatSlider singingSpeedSlider;
     vector<string> testPhrases;
+    
+    ofVideoGrabber vidGrabber;
+    
+    ofRectangle rect;
     
 };

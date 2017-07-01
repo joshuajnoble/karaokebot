@@ -34,11 +34,6 @@ void ofApp::setup(){
     Flite_HTS_Engine_set_alpha(&engine, alphaSlider);
     Flite_HTS_Engine_set_beta(&engine, betaSlider);
 
-    
-    //HTS_Boolean HTS_Engine_synthesize_from_strings(HTS_Engine * engine, char **lines, size_t num_lines);
-    testPhrases.push_back("Karmaaaaaaaaaa police Arrest this man He talks in maths He buzzes like a fridge");
-    testPhrases.push_back("He's like a detuned radio");
-    
     gui.setup(); // most of the time you don't need a name
     gui.add(toneSlider.setup("tone", 0, -40, 40));
     gui.add(volumeSlider.setup("volume", 0.2, 0.0, 1.0));
@@ -46,14 +41,6 @@ void ofApp::setup(){
     gui.add(alphaSlider.setup("alpha", 0.57, -1.0, 1.0));
     gui.add(betaSlider.setup("beta", -0.6, -1.0, 1.0));
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-    synthNewSpeech();
-    
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     
     /// initialize the sound
     int bufferSize		= 512;
@@ -72,27 +59,55 @@ void ofApp::setup(){
     // tesseract - void setup(string dataPath = "", bool absolute = false, string language = "eng");
     tess.setup("", false, "eng");
     tess.setWhitelist("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,");
-//    tess.setAccuracy(ofxTesseract::ACCURATE);
-//    tess.setMode(ofxTesseract::AUTO);
+    
+    
+    // start camera
+    vidGrabber.setDeviceID(0);
+    vidGrabber.setDesiredFrameRate(30);
+    vidGrabber.initGrabber(640, 480);
+    
+    // init grayscale
+    grayImage.allocate(320,240);
+    
+    ofSetVerticalSync(true);
+
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
+    ofBackground(100, 100, 100);
+    vidGrabber.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
+    
+    ofSetHexColor(0xffffff);
+    vidGrabber.draw(20, 20);
+    
     gui.draw();
+    
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     
-    cout << "setting variables " << endl;
     
-    Flite_HTS_Engine_add_half_tone(&engine, toneSlider);
-    Flite_HTS_Engine_set_speed(&engine, singingSpeedSlider);
+    if( key == OF_KEY_RETURN) {
+        cout << "setting variables " << endl;
+
+        flipImage = vidGrabber.getPixels();
+        //flipImage.mirror(true, false);
+
+        string toBeSaid = runOcr( flipImage, 0, 0);
+
+        cout << toBeSaid << endl;
+        synthNewSpeech(toBeSaid);
+    }
+
 }
 
 //--------------------------------------------------------------
@@ -173,17 +188,10 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
         
         availableSamples = 0;
         loadedSamples = 0;
-        
-        whichString++;
-        if(whichString > testPhrases.size()-1) {
-            whichString = 0;
-        }
-        
-        synthNewSpeech();
     }
 }
 
-void ofApp::synthNewSpeech()
+void ofApp::synthNewSpeech(string utterance)
 {
     
     Flite_HTS_Engine_set_speed(&engine, singingSpeedSlider);
@@ -203,7 +211,7 @@ void ofApp::synthNewSpeech()
     v = register_cmu_us_kal(NULL);
     if (v == NULL)
         return FALSE;
-    u = flite_synth_text(testPhrases.at(whichString).c_str(), v);
+    u = flite_synth_text(utterance.c_str(), v);
     if (u == NULL) {
         unregister_cmu_us_kal(v);
         return FALSE;
