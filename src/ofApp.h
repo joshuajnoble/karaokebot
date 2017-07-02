@@ -23,6 +23,8 @@
 #include "HTS_engine.h"
 #include "ofxGui.h"
 
+#include "ofxFilterbank.h"
+
 // opencv
 #include "ofxOpenCv.h"
 
@@ -48,8 +50,11 @@ class ofApp : public ofBaseApp{
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+    
+    void audioIn(float * input, int bufferSize, int nChannels);
     void audioOut(float * output, int bufferSize, int nChannels);
     
+    int calcHighestEnergy();
     void synthNewSpeech(string utterance);
     void exit();
     
@@ -67,8 +72,7 @@ class ofApp : public ofBaseApp{
     int		sampleRate;
     float 	volume;
     
-    vector <float> lAudio;
-    vector <float> rAudio;
+    ofxFilterbank filterBank;
     
     char **label_data = NULL;
     cst_voice *v = NULL;

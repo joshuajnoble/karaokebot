@@ -10,6 +10,13 @@ extern "C"{
 
 #define MAXBUFLEN 1024
 
+#define BANDWITH  1.0
+#define LIN2dB(x) (double)(20. * log10(x))
+#define SR 44100
+
+
+bool isUsingGUI = false;
+
 int whichString = 0;
 int tone = 0;
 
@@ -47,14 +54,17 @@ void ofApp::setup(){
     sampleRate 			= 48000;
     volume				= 0.5f;
     
-    lAudio.assign(bufferSize, 0.0);
-    rAudio.assign(bufferSize, 0.0);
-    
     soundStream.printDeviceList();
     
-    //if you want to set the device id to be different than the default
     soundStream.setDeviceID(1); 	//note some devices are input only and some are output only
     soundStream.setup(this, 2, 0, sampleRate, bufferSize, 4);
+    
+    int midiMin = 21;
+    int midiMax = 108;
+    
+    // now make filterbank so we can figure out the sounds
+    filterBank.setup(bufferSize, midiMin, midiMax, 2, BANDWITH, sampleRate, 1.0);
+    filterBank.setColor(ofColor::orange);
     
     // tesseract - void setup(string dataPath = "", bool absolute = false, string language = "eng");
     tess.setup("", false, "eng");
@@ -105,7 +115,9 @@ void ofApp::keyPressed(int key){
         string toBeSaid = runOcr( flipImage, 0, 0);
 
         cout << toBeSaid << endl;
+        
         synthNewSpeech(toBeSaid);
+        
     }
 
 }
@@ -160,6 +172,14 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 //--------------------------------------------------------------
+void ofApp::audioIn(float * input, int bufferSize, int nChannels){
+    
+    //Analyze Input Buffer with ofxFilterbank
+    filterBank.analyze(input);
+    
+}
+
+//--------------------------------------------------------------
 void ofApp::audioOut(float * output, int bufferSize, int nChannels){
     
     double x;
@@ -191,13 +211,47 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
     }
 }
 
+int ofApp::calcHighestEnergy()
+{
+    float *energies = filterBank.getSmthEnergies();
+    
+    int highestEnergy = 0;
+    int highestEnergyIndex = -1.0;
+    int i = 0;
+    
+    while( &energies[i] != NULL )
+    {
+        if(energies[i] > highestEnergyIndex)
+        {
+            highestEnergy = i;
+            highestEnergyIndex = energies[i];
+        }
+        i++;
+    }
+    
+    return highestEnergyIndex;
+}
+
 void ofApp::synthNewSpeech(string utterance)
 {
     
-    Flite_HTS_Engine_set_speed(&engine, singingSpeedSlider);
-    Flite_HTS_Engine_add_half_tone(&engine, toneSlider);
-    Flite_HTS_Engine_set_alpha(&engine, alphaSlider);
-    Flite_HTS_Engine_set_beta(&engine, betaSlider);
+    if( isUsingGUI ) {
+    
+        Flite_HTS_Engine_set_speed(&engine, singingSpeedSlider);
+        Flite_HTS_Engine_add_half_tone(&engine, toneSlider);
+        Flite_HTS_Engine_set_alpha(&engine, alphaSlider);
+        Flite_HTS_Engine_set_beta(&engine, betaSlider);
+        
+    } else {
+        
+        int highest = calcHighestEnergy();
+        int adjustedPitchRange = highest - 100; // ???
+        
+        Flite_HTS_Engine_add_half_tone(&engine, adjustedPitchRange);
+        Flite_HTS_Engine_set_alpha(&engine, alphaSlider);
+        Flite_HTS_Engine_set_beta(&engine, betaSlider);
+        
+    }
     
     v = NULL;
     u = NULL;
@@ -248,5 +302,9 @@ string ofApp::runOcr(ofPixels& pix, float scale, int medianSize) {
 
 void ofApp::exit()
 {
+    soundStream.stop();
+    soundStream.close();
+    filterBank.exit();
+    
     //Flite_HTS_Engine_clear(&engine);
 }

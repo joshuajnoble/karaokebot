@@ -16,6 +16,9 @@
 		A83C85901F0836B40089D63D /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85841F080DAE0089D63D /* ofxCvImage.cpp */; };
 		A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85861F080DAE0089D63D /* ofxCvShortImage.cpp */; };
 		A83C85921F0836D60089D63D /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83C856F1F080DAE0089D63D /* opencv.a */; };
+		A895E84E1F08DF1000EEC4E3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A895E83A1F08DF1000EEC4E3 /* README.md */; };
+		A895E84F1F08DF1000EEC4E3 /* fb_funcs.c in Sources */ = {isa = PBXBuildFile; fileRef = A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */; };
+		A895E8501F08DF1000EEC4E3 /* ofxFilterbank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */; };
 		A8A8F7CE1F024B6800673BD1 /* flite_voice_list.c in Sources */ = {isa = PBXBuildFile; fileRef = A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */; };
 		A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */; };
 		A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8EF1F02BB9C007CF357 /* ofxButton.cpp */; };
@@ -293,6 +296,11 @@
 		A83C85871F080DAE0089D63D /* ofxCvShortImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCvShortImage.h; sourceTree = "<group>"; };
 		A83C85881F080DAE0089D63D /* ofxOpenCv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		A83C85951F0836E90089D63D /* opencv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = opencv.a; sourceTree = "<group>"; };
+		A895E83A1F08DF1000EEC4E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fb_funcs.c; sourceTree = "<group>"; };
+		A895E83D1F08DF1000EEC4E3 /* fb_funcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fb_funcs.h; sourceTree = "<group>"; };
+		A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFilterbank.cpp; sourceTree = "<group>"; };
+		A895E83F1F08DF1000EEC4E3 /* ofxFilterbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFilterbank.h; sourceTree = "<group>"; };
 		A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = flite_voice_list.c; sourceTree = "<group>"; };
 		A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
 		A8E3E8EE1F02BB9C007CF357 /* ofxBaseGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
@@ -966,6 +974,27 @@
 			path = ../../../addons/ofxOpenCv/libs/opencv/lib/osx;
 			sourceTree = "<group>";
 		};
+		A895E8021F08DF1000EEC4E3 /* ofxFilterbank */ = {
+			isa = PBXGroup;
+			children = (
+				A895E83A1F08DF1000EEC4E3 /* README.md */,
+				A895E83B1F08DF1000EEC4E3 /* src */,
+			);
+			name = ofxFilterbank;
+			path = ../../../addons/ofxFilterbank;
+			sourceTree = "<group>";
+		};
+		A895E83B1F08DF1000EEC4E3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */,
+				A895E83D1F08DF1000EEC4E3 /* fb_funcs.h */,
+				A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */,
+				A895E83F1F08DF1000EEC4E3 /* ofxFilterbank.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		A8E3E8EB1F02BB9C007CF357 /* ofxGui */ = {
 			isa = PBXGroup;
 			children = (
@@ -1002,6 +1031,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				A895E8021F08DF1000EEC4E3 /* ofxFilterbank */,
 				A83C84A11F080DAE0089D63D /* ofxOpenCv */,
 				A83C83711F080D920089D63D /* ofxCv */,
 				A83C834B1F080BA20089D63D /* ofxTesseract */,
@@ -1149,6 +1179,9 @@
 				A83C85891F081B9A0089D63D /* ofxTesseract.cpp in Sources */,
 				A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */,
 				A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */,
+				A895E84E1F08DF1000EEC4E3 /* README.md in Sources */,
+				A895E84F1F08DF1000EEC4E3 /* fb_funcs.c in Sources */,
+				A895E8501F08DF1000EEC4E3 /* ofxFilterbank.cpp in Sources */,
 				A8E3E9021F02BD30007CF357 /* ofxGuiGroup.cpp in Sources */,
 				A8E3E9031F02BD30007CF357 /* ofxLabel.cpp in Sources */,
 				A8E3E9041F02BD30007CF357 /* ofxPanel.cpp in Sources */,
