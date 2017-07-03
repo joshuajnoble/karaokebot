@@ -19,6 +19,14 @@
 		A895E84E1F08DF1000EEC4E3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A895E83A1F08DF1000EEC4E3 /* README.md */; };
 		A895E84F1F08DF1000EEC4E3 /* fb_funcs.c in Sources */ = {isa = PBXBuildFile; fileRef = A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */; };
 		A895E8501F08DF1000EEC4E3 /* ofxFilterbank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */; };
+		A895E86D1F09882200EEC4E3 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E85A1F09882200EEC4E3 /* fft.cpp */; };
+		A895E86E1F09882200EEC4E3 /* maxiAtoms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E85C1F09882200EEC4E3 /* maxiAtoms.cpp */; };
+		A895E86F1F09882200EEC4E3 /* maxiBark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E85E1F09882200EEC4E3 /* maxiBark.cpp */; };
+		A895E8701F09882200EEC4E3 /* maxiFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8601F09882200EEC4E3 /* maxiFFT.cpp */; };
+		A895E8711F09882200EEC4E3 /* maxiGrains.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8621F09882200EEC4E3 /* maxiGrains.cpp */; };
+		A895E8721F09882200EEC4E3 /* maxiMFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8641F09882200EEC4E3 /* maxiMFCC.cpp */; };
+		A895E8731F09882200EEC4E3 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8661F09882200EEC4E3 /* maximilian.cpp */; };
+		A895E8741F09882200EEC4E3 /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = A895E8691F09882200EEC4E3 /* stb_vorbis.c */; };
 		A8A8F7CE1F024B6800673BD1 /* flite_voice_list.c in Sources */ = {isa = PBXBuildFile; fileRef = A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */; };
 		A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */; };
 		A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8EF1F02BB9C007CF357 /* ofxButton.cpp */; };
@@ -301,6 +309,25 @@
 		A895E83D1F08DF1000EEC4E3 /* fb_funcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fb_funcs.h; sourceTree = "<group>"; };
 		A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFilterbank.cpp; sourceTree = "<group>"; };
 		A895E83F1F08DF1000EEC4E3 /* ofxFilterbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFilterbank.h; sourceTree = "<group>"; };
+		A895E8581F09882200EEC4E3 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
+		A895E85A1F09882200EEC4E3 /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
+		A895E85B1F09882200EEC4E3 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
+		A895E85C1F09882200EEC4E3 /* maxiAtoms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiAtoms.cpp; sourceTree = "<group>"; };
+		A895E85D1F09882200EEC4E3 /* maxiAtoms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiAtoms.h; sourceTree = "<group>"; };
+		A895E85E1F09882200EEC4E3 /* maxiBark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiBark.cpp; sourceTree = "<group>"; };
+		A895E85F1F09882200EEC4E3 /* maxiBark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiBark.h; sourceTree = "<group>"; };
+		A895E8601F09882200EEC4E3 /* maxiFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiFFT.cpp; sourceTree = "<group>"; };
+		A895E8611F09882200EEC4E3 /* maxiFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiFFT.h; sourceTree = "<group>"; };
+		A895E8621F09882200EEC4E3 /* maxiGrains.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiGrains.cpp; sourceTree = "<group>"; };
+		A895E8631F09882200EEC4E3 /* maxiGrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiGrains.h; sourceTree = "<group>"; };
+		A895E8641F09882200EEC4E3 /* maxiMFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiMFCC.cpp; sourceTree = "<group>"; };
+		A895E8651F09882200EEC4E3 /* maxiMFCC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiMFCC.h; sourceTree = "<group>"; };
+		A895E8661F09882200EEC4E3 /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maximilian.cpp; sourceTree = "<group>"; };
+		A895E8671F09882200EEC4E3 /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maximilian.h; sourceTree = "<group>"; };
+		A895E8681F09882200EEC4E3 /* sineTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sineTable.h; sourceTree = "<group>"; };
+		A895E8691F09882200EEC4E3 /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
+		A895E86A1F09882200EEC4E3 /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
+		A895E86C1F09882200EEC4E3 /* ofxMaxim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMaxim.h; sourceTree = "<group>"; };
 		A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = flite_voice_list.c; sourceTree = "<group>"; };
 		A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
 		A8E3E8EE1F02BB9C007CF357 /* ofxBaseGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
@@ -995,6 +1022,49 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		A895E8571F09882200EEC4E3 /* ofxMaxim */ = {
+			isa = PBXGroup;
+			children = (
+				A895E8581F09882200EEC4E3 /* install.xml */,
+				A895E8591F09882200EEC4E3 /* libs */,
+				A895E86B1F09882200EEC4E3 /* src */,
+			);
+			name = ofxMaxim;
+			path = ../../../addons/ofxMaxim;
+			sourceTree = "<group>";
+		};
+		A895E8591F09882200EEC4E3 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				A895E85A1F09882200EEC4E3 /* fft.cpp */,
+				A895E85B1F09882200EEC4E3 /* fft.h */,
+				A895E85C1F09882200EEC4E3 /* maxiAtoms.cpp */,
+				A895E85D1F09882200EEC4E3 /* maxiAtoms.h */,
+				A895E85E1F09882200EEC4E3 /* maxiBark.cpp */,
+				A895E85F1F09882200EEC4E3 /* maxiBark.h */,
+				A895E8601F09882200EEC4E3 /* maxiFFT.cpp */,
+				A895E8611F09882200EEC4E3 /* maxiFFT.h */,
+				A895E8621F09882200EEC4E3 /* maxiGrains.cpp */,
+				A895E8631F09882200EEC4E3 /* maxiGrains.h */,
+				A895E8641F09882200EEC4E3 /* maxiMFCC.cpp */,
+				A895E8651F09882200EEC4E3 /* maxiMFCC.h */,
+				A895E8661F09882200EEC4E3 /* maximilian.cpp */,
+				A895E8671F09882200EEC4E3 /* maximilian.h */,
+				A895E8681F09882200EEC4E3 /* sineTable.h */,
+				A895E8691F09882200EEC4E3 /* stb_vorbis.c */,
+				A895E86A1F09882200EEC4E3 /* stb_vorbis.h */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		A895E86B1F09882200EEC4E3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A895E86C1F09882200EEC4E3 /* ofxMaxim.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		A8E3E8EB1F02BB9C007CF357 /* ofxGui */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,6 +1101,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				A895E8571F09882200EEC4E3 /* ofxMaxim */,
 				A895E8021F08DF1000EEC4E3 /* ofxFilterbank */,
 				A83C84A11F080DAE0089D63D /* ofxOpenCv */,
 				A83C83711F080D920089D63D /* ofxCv */,
@@ -1169,13 +1240,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A895E8741F09882200EEC4E3 /* stb_vorbis.c in Sources */,
 				A83C858B1F0836B40089D63D /* ofxCvColorImage.cpp in Sources */,
+				A895E8701F09882200EEC4E3 /* maxiFFT.cpp in Sources */,
+				A895E86E1F09882200EEC4E3 /* maxiAtoms.cpp in Sources */,
 				A83C858C1F0836B40089D63D /* ofxCvContourFinder.cpp in Sources */,
 				A83C858D1F0836B40089D63D /* ofxCvFloatImage.cpp in Sources */,
 				A83C858E1F0836B40089D63D /* ofxCvGrayscaleImage.cpp in Sources */,
 				A83C858F1F0836B40089D63D /* ofxCvHaarFinder.cpp in Sources */,
 				A83C85901F0836B40089D63D /* ofxCvImage.cpp in Sources */,
+				A895E86F1F09882200EEC4E3 /* maxiBark.cpp in Sources */,
 				A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */,
+				A895E8711F09882200EEC4E3 /* maxiGrains.cpp in Sources */,
 				A83C85891F081B9A0089D63D /* ofxTesseract.cpp in Sources */,
 				A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */,
 				A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */,
@@ -1186,8 +1262,11 @@
 				A8E3E9031F02BD30007CF357 /* ofxLabel.cpp in Sources */,
 				A8E3E9041F02BD30007CF357 /* ofxPanel.cpp in Sources */,
 				A8E3E9051F02BD30007CF357 /* ofxSlider.cpp in Sources */,
+				A895E8721F09882200EEC4E3 /* maxiMFCC.cpp in Sources */,
 				A8E3E9061F02BD30007CF357 /* ofxSliderGroup.cpp in Sources */,
+				A895E8731F09882200EEC4E3 /* maximilian.cpp in Sources */,
 				A8E3E9071F02BD30007CF357 /* ofxToggle.cpp in Sources */,
+				A895E86D1F09882200EEC4E3 /* fft.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				A8A8F7CE1F024B6800673BD1 /* flite_voice_list.c in Sources */,

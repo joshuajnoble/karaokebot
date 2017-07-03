@@ -79,8 +79,8 @@ void ofApp::setup(){
     // init grayscale
     grayImage.allocate(320,240);
     
+    // vert sync
     ofSetVerticalSync(true);
-
 
 }
 
@@ -113,7 +113,6 @@ void ofApp::keyPressed(int key){
         //flipImage.mirror(true, false);
 
         string toBeSaid = runOcr( flipImage, 0, 0);
-
         cout << toBeSaid << endl;
         
         synthNewSpeech(toBeSaid);
@@ -185,6 +184,13 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
     double x;
     short temp;
     int i = loadedSamples;
+    
+#ifdef USING_MAXIMILIAN
+    
+    
+    
+#else
+    
     for (int j = 0; j < bufferSize && i < availableSamples; i++, j++) {
         float(x) = HTS_Engine_get_generated_speech((HTS_Engine*)&engine, i);
         
@@ -209,6 +215,7 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
         availableSamples = 0;
         loadedSamples = 0;
     }
+#endif
 }
 
 int ofApp::calcHighestEnergy()
@@ -245,7 +252,7 @@ void ofApp::synthNewSpeech(string utterance)
     } else {
         
         int highest = calcHighestEnergy();
-        int adjustedPitchRange = highest - 100; // ???
+        int adjustedPitchRange = (highest - 100)/3; // ???
         
         Flite_HTS_Engine_add_half_tone(&engine, adjustedPitchRange);
         Flite_HTS_Engine_set_alpha(&engine, alphaSlider);
@@ -288,6 +295,23 @@ void ofApp::synthNewSpeech(string utterance)
     
     HTS_GStreamSet *gss = &( (HTS_Engine*)&engine)->gss;
     availableSamples = HTS_Engine_get_nsamples((HTS_Engine*)&engine);
+    
+    // put these into the maxim player here?
+    
+    // clear memory
+    delete[] maxiSampleInst.temp;
+    
+    // allocate new buffer
+    maxiSampleInst.temp = new short[availableSamples];
+    
+    // make a new sample
+    for (int i = 0; i < availableSamples; i++ ) {
+        float(x) = HTS_Engine_get_generated_speech((HTS_Engine*)&engine, i);
+        maxiSampleInst.temp[i] = x * 0.001 * volume;
+    }
+
+    
+    timeStretch = new maxiTimePitchStretch<hannWinFunctor, maxiSample>(&maxiSampleInst);
     
     ofLog( OF_LOG_NOTICE, ofToString(availableSamples));
 

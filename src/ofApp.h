@@ -23,6 +23,8 @@
 #include "HTS_engine.h"
 #include "ofxGui.h"
 
+#include "ofxMaxim.h"
+
 #include "ofxFilterbank.h"
 
 // opencv
@@ -95,5 +97,8 @@ class ofApp : public ofBaseApp{
     ofVideoGrabber vidGrabber;
     
     ofRectangle rect;
+    
+    maxiSample maxiSampleInst;
+    maxiTimePitchStretch<hannWinFunctor, maxiSample>* timeStretch;
     
 };
