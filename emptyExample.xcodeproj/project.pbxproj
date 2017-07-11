@@ -16,6 +16,7 @@
 		A83C85901F0836B40089D63D /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85841F080DAE0089D63D /* ofxCvImage.cpp */; };
 		A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85861F080DAE0089D63D /* ofxCvShortImage.cpp */; };
 		A83C85921F0836D60089D63D /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83C856F1F080DAE0089D63D /* opencv.a */; };
+		A885C83D1F1560EB00044997 /* librubberband.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A885C83C1F1560C400044997 /* librubberband.a */; };
 		A895E84E1F08DF1000EEC4E3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A895E83A1F08DF1000EEC4E3 /* README.md */; };
 		A895E84F1F08DF1000EEC4E3 /* fb_funcs.c in Sources */ = {isa = PBXBuildFile; fileRef = A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */; };
 		A895E8501F08DF1000EEC4E3 /* ofxFilterbank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */; };
@@ -28,6 +29,17 @@
 		A895E8731F09882200EEC4E3 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8661F09882200EEC4E3 /* maximilian.cpp */; };
 		A895E8741F09882200EEC4E3 /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = A895E8691F09882200EEC4E3 /* stb_vorbis.c */; };
 		A8A8F7CE1F024B6800673BD1 /* flite_voice_list.c in Sources */ = {isa = PBXBuildFile; fileRef = A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */; };
+		A8D1DA011F0BC051000A77A7 /* Calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84901F080D920089D63D /* Calibration.cpp */; };
+		A8D1DA021F0BC051000A77A7 /* ContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84911F080D920089D63D /* ContourFinder.cpp */; };
+		A8D1DA031F0BC051000A77A7 /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84921F080D920089D63D /* Distance.cpp */; };
+		A8D1DA041F0BC051000A77A7 /* Flow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84931F080D920089D63D /* Flow.cpp */; };
+		A8D1DA051F0BC051000A77A7 /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84941F080D920089D63D /* Helpers.cpp */; };
+		A8D1DA061F0BC051000A77A7 /* Kalman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84951F080D920089D63D /* Kalman.cpp */; };
+		A8D1DA071F0BC051000A77A7 /* ObjectFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84961F080D920089D63D /* ObjectFinder.cpp */; };
+		A8D1DA081F0BC051000A77A7 /* RunningBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84971F080D920089D63D /* RunningBackground.cpp */; };
+		A8D1DA091F0BC051000A77A7 /* Tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84981F080D920089D63D /* Tracker.cpp */; };
+		A8D1DA0A1F0BC051000A77A7 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84991F080D920089D63D /* Utilities.cpp */; };
+		A8D1DA0B1F0BC051000A77A7 /* Wrappers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C849A1F080D920089D63D /* Wrappers.cpp */; };
 		A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */; };
 		A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8EF1F02BB9C007CF357 /* ofxButton.cpp */; };
 		A8E3E9021F02BD30007CF357 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E3E8F21F02BB9C007CF357 /* ofxGuiGroup.cpp */; };
@@ -304,6 +316,8 @@
 		A83C85871F080DAE0089D63D /* ofxCvShortImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCvShortImage.h; sourceTree = "<group>"; };
 		A83C85881F080DAE0089D63D /* ofxOpenCv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		A83C85951F0836E90089D63D /* opencv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = opencv.a; sourceTree = "<group>"; };
+		A885C83A1F1560C400044997 /* RubberBandStretcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubberBandStretcher.h; sourceTree = "<group>"; };
+		A885C83C1F1560C400044997 /* librubberband.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librubberband.a; sourceTree = "<group>"; };
 		A895E83A1F08DF1000EEC4E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fb_funcs.c; sourceTree = "<group>"; };
 		A895E83D1F08DF1000EEC4E3 /* fb_funcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fb_funcs.h; sourceTree = "<group>"; };
@@ -361,6 +375,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A885C83D1F1560EB00044997 /* librubberband.a in Frameworks */,
 				A83C85921F0836D60089D63D /* opencv.a in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 			);
@@ -1001,6 +1016,32 @@
 			path = ../../../addons/ofxOpenCv/libs/opencv/lib/osx;
 			sourceTree = "<group>";
 		};
+		A885C8381F1560C400044997 /* ofxRubberBand */ = {
+			isa = PBXGroup;
+			children = (
+				A885C8391F1560C400044997 /* include */,
+				A885C83B1F1560C400044997 /* lib */,
+			);
+			name = ofxRubberBand;
+			path = ../../../addons/ofxRubberBand;
+			sourceTree = "<group>";
+		};
+		A885C8391F1560C400044997 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A885C83A1F1560C400044997 /* RubberBandStretcher.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A885C83B1F1560C400044997 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A885C83C1F1560C400044997 /* librubberband.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		A895E8021F08DF1000EEC4E3 /* ofxFilterbank */ = {
 			isa = PBXGroup;
 			children = (
@@ -1101,6 +1142,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				A885C8381F1560C400044997 /* ofxRubberBand */,
 				A895E8571F09882200EEC4E3 /* ofxMaxim */,
 				A895E8021F08DF1000EEC4E3 /* ofxFilterbank */,
 				A83C84A11F080DAE0089D63D /* ofxOpenCv */,
@@ -1240,6 +1282,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8D1DA011F0BC051000A77A7 /* Calibration.cpp in Sources */,
+				A8D1DA021F0BC051000A77A7 /* ContourFinder.cpp in Sources */,
+				A8D1DA031F0BC051000A77A7 /* Distance.cpp in Sources */,
+				A8D1DA041F0BC051000A77A7 /* Flow.cpp in Sources */,
+				A8D1DA051F0BC051000A77A7 /* Helpers.cpp in Sources */,
+				A8D1DA061F0BC051000A77A7 /* Kalman.cpp in Sources */,
+				A8D1DA071F0BC051000A77A7 /* ObjectFinder.cpp in Sources */,
+				A8D1DA081F0BC051000A77A7 /* RunningBackground.cpp in Sources */,
+				A8D1DA091F0BC051000A77A7 /* Tracker.cpp in Sources */,
+				A8D1DA0A1F0BC051000A77A7 /* Utilities.cpp in Sources */,
+				A8D1DA0B1F0BC051000A77A7 /* Wrappers.cpp in Sources */,
 				A895E8741F09882200EEC4E3 /* stb_vorbis.c in Sources */,
 				A83C858B1F0836B40089D63D /* ofxCvColorImage.cpp in Sources */,
 				A895E8701F09882200EEC4E3 /* maxiFFT.cpp in Sources */,
@@ -1372,6 +1425,9 @@
 					../../../addons/ofxGui/src,
 					/usr/local/opt/tesseract/include,
 					/usr/local/opt/leptonica/include,
+					../../../addons/ofxOpenCv/libs/opencv/include/,
+					../../../addons/ofxCv/libs/ofxCv/include/,
+					../../../addons/ofxRubberBand/include,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1381,6 +1437,7 @@
 					"$(inherited)",
 					/usr/local/lib,
 					/usr/local/opt/tesseract/lib,
+					../../../addons/ofxRubberBand/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
@@ -1417,6 +1474,9 @@
 					../../../addons/ofxGui/src,
 					/usr/local/opt/tesseract/include,
 					/usr/local/opt/leptonica/include,
+					../../../addons/ofxOpenCv/libs/opencv/include/,
+					../../../addons/ofxCv/libs/ofxCv/include/,
+					../../../addons/ofxRubberBand/include,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1426,6 +1486,7 @@
 					"$(inherited)",
 					/usr/local/lib,
 					/usr/local/opt/tesseract/lib,
+					../../../addons/ofxRubberBand/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (

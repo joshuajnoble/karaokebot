@@ -33,9 +33,11 @@
 // tess
 #include "ofxTesseract.h"
 
-
+// ofxcv
+#include "ofxCv.h"
 
 class ofApp : public ofBaseApp{
+    
 	public:
     void setup();
     void update();
@@ -94,11 +96,18 @@ class ofApp : public ofBaseApp{
     ofxFloatSlider singingSpeedSlider;
     vector<string> testPhrases;
     
+    
     ofVideoGrabber vidGrabber;
+    ofVideoPlayer vidPlayer;
+    
+    ofImage thresh;
     
     ofRectangle rect;
     
+    // maximilian
+    double speed, grainLength;
     maxiSample maxiSampleInst;
     maxiTimePitchStretch<hannWinFunctor, maxiSample>* timeStretch;
+    maxiSample samp;
     
 };

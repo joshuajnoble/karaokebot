@@ -14,8 +14,9 @@ extern "C"{
 #define LIN2dB(x) (double)(20. * log10(x))
 #define SR 44100
 
+#define USING_MAXIMILIAN
 
-bool isUsingGUI = false;
+bool isUsingGUI = true;
 
 int whichString = 0;
 int tone = 0;
@@ -54,10 +55,6 @@ void ofApp::setup(){
     sampleRate 			= 48000;
     volume				= 0.5f;
     
-    soundStream.printDeviceList();
-    
-    soundStream.setDeviceID(1); 	//note some devices are input only and some are output only
-    soundStream.setup(this, 2, 0, sampleRate, bufferSize, 4);
     
     int midiMin = 21;
     int midiMax = 108;
@@ -66,39 +63,81 @@ void ofApp::setup(){
     filterBank.setup(bufferSize, midiMin, midiMax, 2, BANDWITH, sampleRate, 1.0);
     filterBank.setColor(ofColor::orange);
     
+    /// maxi setup
+    ofxMaxiSettings::setup(sampleRate, 2, bufferSize);
+    speed = 1;
+    grainLength = 0.05;
+    
+//    samp.load(ofToDataPath("tmp.wav"));
+//    timeStretch = new maxiTimePitchStretch<hannWinFunctor, maxiSample>(&samp);
+    
+    // finally the OF setup
+    soundStream.setDeviceID(1); 	//note some devices are input only and some are output only
+    soundStream.setup(this, 2, 0, sampleRate, bufferSize, 4);
+    
     // tesseract - void setup(string dataPath = "", bool absolute = false, string language = "eng");
     tess.setup("", false, "eng");
-    tess.setWhitelist("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,");
+    tess.setWhitelist("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,'1234567890");
     
+#ifdef USE_CAMERA
     
     // start camera
     vidGrabber.setDeviceID(0);
     vidGrabber.setDesiredFrameRate(30);
     vidGrabber.initGrabber(640, 480);
     
+#else
+    
+    vidPlayer.load("cant_help_falling.mov");
+    vidPlayer.setVolume(0);
+    vidPlayer.play();
+    
+#endif
+    
     // init grayscale
-    grayImage.allocate(320,240);
+    thresh.allocate(640, 480, OF_IMAGE_GRAYSCALE);
     
     // vert sync
     ofSetVerticalSync(true);
+
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
     ofBackground(100, 100, 100);
+    
+#ifdef USE_CAMERA
+    
     vidGrabber.update();
+    if(vidGrabber.isFrameNew()) {
+        ofxCv::convertColor(vidGrabber, thresh, CV_RGB2GRAY);
+        //ofxCv::autothreshold(thresh);
+        thresh.update();
+    }
+    
+#else
+    
+    vidPlayer.update();
+    if(vidPlayer.isFrameNew()) {
+        ofxCv::convertColor(vidPlayer, thresh, CV_RGB2GRAY);
+        thresh.update();
+    }
+
+#endif
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    
     ofSetHexColor(0xffffff);
-    vidGrabber.draw(20, 20);
+    
+    vidGrabber.draw(20, 20, 320, 240);
+    thresh.draw(20, 260, 320, 240);
     
     gui.draw();
-    
     
 }
 
@@ -112,7 +151,7 @@ void ofApp::keyPressed(int key){
         flipImage = vidGrabber.getPixels();
         //flipImage.mirror(true, false);
 
-        string toBeSaid = runOcr( flipImage, 0, 0);
+        string toBeSaid = runOcr( thresh, 0, 0);
         cout << toBeSaid << endl;
         
         synthNewSpeech(toBeSaid);
@@ -187,7 +226,14 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
     
 #ifdef USING_MAXIMILIAN
     
-    
+    for (int i = 0; i < bufferSize; i++){
+        if(timeStretch != NULL ) {
+            double wave = timeStretch->playOnce( 1.0, 1.0, grainLength, 4, 0 );
+            output[i * nChannels    ] = wave;
+            output[i * nChannels + 1] = wave;
+        }
+    }
+
     
 #else
     
@@ -226,15 +272,17 @@ int ofApp::calcHighestEnergy()
     int highestEnergyIndex = -1.0;
     int i = 0;
     
-    while( &energies[i] != NULL )
-    {
-        if(energies[i] > highestEnergyIndex)
-        {
-            highestEnergy = i;
-            highestEnergyIndex = energies[i];
-        }
-        i++;
-    }
+//    if(energies != NULL ) {
+//        while( &energies[i] != NULL )
+//        {
+//            if(energies[i] > highestEnergyIndex)
+//            {
+//                highestEnergy = i;
+//                highestEnergyIndex = energies[i];
+//            }
+//            i++;
+//        }
+//    }
     
     return highestEnergyIndex;
 }
@@ -303,16 +351,15 @@ void ofApp::synthNewSpeech(string utterance)
     
     // allocate new buffer
     maxiSampleInst.temp = new short[availableSamples];
+    maxiSampleInst.myDataSize = availableSamples * 2;
     
     // make a new sample
     for (int i = 0; i < availableSamples; i++ ) {
-        float(x) = HTS_Engine_get_generated_speech((HTS_Engine*)&engine, i);
-        maxiSampleInst.temp[i] = x * 0.001 * volume;
+        float x = HTS_Engine_get_generated_speech((HTS_Engine*)&engine, i);
+        maxiSampleInst.temp[i] = x;
     }
-
     
     timeStretch = new maxiTimePitchStretch<hannWinFunctor, maxiSample>(&maxiSampleInst);
-    
     ofLog( OF_LOG_NOTICE, ofToString(availableSamples));
 
 }
