@@ -15,6 +15,7 @@
  
  */
 
+#include <rubberband/RubberBandStretcher.h>
 
 #include "ofMain.h"
 #include "TTS.h"
@@ -23,9 +24,9 @@
 #include "HTS_engine.h"
 #include "ofxGui.h"
 
-#include "ofxMaxim.h"
+#include "soundfile.h"
 
-#include "ofxFilterbank.h"
+#include "ofxAubio.h"
 
 // opencv
 #include "ofxOpenCv.h"
@@ -48,6 +49,7 @@ class ofApp : public ofBaseApp{
     void mouseMoved(int x, int y);
     void mouseDragged(int x, int y, int button);
     void mousePressed(int x, int y, int button);
+    
     void mouseReleased(int x, int y, int button);
     void mouseEntered(int x, int y);
     void mouseExited(int x, int y);
@@ -58,7 +60,9 @@ class ofApp : public ofBaseApp{
     void audioIn(float * input, int bufferSize, int nChannels);
     void audioOut(float * output, int bufferSize, int nChannels);
     
-    int calcHighestEnergy();
+    void onsetEvent(float & time);
+    void beatEvent(float & time);
+    
     void synthNewSpeech(string utterance);
     void exit();
     
@@ -75,9 +79,7 @@ class ofApp : public ofBaseApp{
     float 	pan;
     int		sampleRate;
     float 	volume;
-    
-    ofxFilterbank filterBank;
-    
+
     char **label_data = NULL;
     cst_voice *v = NULL;
     cst_utterance *u = NULL;
@@ -96,18 +98,34 @@ class ofApp : public ofBaseApp{
     ofxFloatSlider singingSpeedSlider;
     vector<string> testPhrases;
     
+    SoundFile soundFile;
     
     ofVideoGrabber vidGrabber;
-    ofVideoPlayer vidPlayer;
+    ofAVFoundationPlayer vidPlayer;
     
     ofImage thresh;
-    
     ofRectangle rect;
     
-    // maximilian
-    double speed, grainLength;
-    maxiSample maxiSampleInst;
-    maxiTimePitchStretch<hannWinFunctor, maxiSample>* timeStretch;
-    maxiSample samp;
+    // aubio stuff
+    ofxAubioOnset onset;
+    ofxAubioPitch pitch;
+    ofxAubioBeat beat;
+    
+    RubberBand::RubberBandStretcher *rubberband = NULL;
+    
+    // Input buffers for the RubberBandStretcher
+    std::vector<float*> stretchInBuf;
+    std::vector<float> stretchInBufL;
+    std::vector<float> stretchInBufR;
+    
+    // Output buffers for the RubberBandStretcher
+    std::vector<float*> stretchOutBuf;
+    std::vector<float> stretchOutBufL;
+    std::vector<float> stretchOutBufR;
+
+    std::vector<float> inputSamples;
+    
+    int samplePlayPosition, soundFilePlayhead;
+    
     
 };

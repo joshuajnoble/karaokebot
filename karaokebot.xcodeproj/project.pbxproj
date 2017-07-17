@@ -17,17 +17,14 @@
 		A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85861F080DAE0089D63D /* ofxCvShortImage.cpp */; };
 		A83C85921F0836D60089D63D /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83C856F1F080DAE0089D63D /* opencv.a */; };
 		A885C83D1F1560EB00044997 /* librubberband.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A885C83C1F1560C400044997 /* librubberband.a */; };
-		A895E84E1F08DF1000EEC4E3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A895E83A1F08DF1000EEC4E3 /* README.md */; };
-		A895E84F1F08DF1000EEC4E3 /* fb_funcs.c in Sources */ = {isa = PBXBuildFile; fileRef = A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */; };
-		A895E8501F08DF1000EEC4E3 /* ofxFilterbank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */; };
-		A895E86D1F09882200EEC4E3 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E85A1F09882200EEC4E3 /* fft.cpp */; };
-		A895E86E1F09882200EEC4E3 /* maxiAtoms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E85C1F09882200EEC4E3 /* maxiAtoms.cpp */; };
-		A895E86F1F09882200EEC4E3 /* maxiBark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E85E1F09882200EEC4E3 /* maxiBark.cpp */; };
-		A895E8701F09882200EEC4E3 /* maxiFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8601F09882200EEC4E3 /* maxiFFT.cpp */; };
-		A895E8711F09882200EEC4E3 /* maxiGrains.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8621F09882200EEC4E3 /* maxiGrains.cpp */; };
-		A895E8721F09882200EEC4E3 /* maxiMFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8641F09882200EEC4E3 /* maxiMFCC.cpp */; };
-		A895E8731F09882200EEC4E3 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895E8661F09882200EEC4E3 /* maximilian.cpp */; };
-		A895E8741F09882200EEC4E3 /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = A895E8691F09882200EEC4E3 /* stb_vorbis.c */; };
+		A885C8631F1697B000044997 /* ofxAubioBeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A885C8541F1697B000044997 /* ofxAubioBeat.cpp */; };
+		A885C8641F1697B000044997 /* ofxAubioBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A885C8561F1697B000044997 /* ofxAubioBlock.cpp */; };
+		A885C8651F1697B000044997 /* ofxAubioMelBands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A885C8581F1697B000044997 /* ofxAubioMelBands.cpp */; };
+		A885C8661F1697B000044997 /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A885C85A1F1697B000044997 /* ofxAubioOnset.cpp */; };
+		A885C8671F1697B000044997 /* ofxAubioPitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A885C85C1F1697B000044997 /* ofxAubioPitch.cpp */; };
+		A885C86C1F169D1500044997 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A885C86A1F169B3900044997 /* aubio.framework */; };
+		A885C87B1F16A82A00044997 /* AVFVP_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A885C87A1F16A82A00044997 /* AVFVP_Wrapper.mm */; };
+		A891EA111F1CE1A60012F58C /* soundfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A891EA0F1F1CE1A60012F58C /* soundfile.cpp */; };
 		A8A8F7CE1F024B6800673BD1 /* flite_voice_list.c in Sources */ = {isa = PBXBuildFile; fileRef = A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */; };
 		A8D1DA011F0BC051000A77A7 /* Calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84901F080D920089D63D /* Calibration.cpp */; };
 		A8D1DA021F0BC051000A77A7 /* ContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C84911F080D920089D63D /* ContourFinder.cpp */; };
@@ -318,30 +315,24 @@
 		A83C85951F0836E90089D63D /* opencv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = opencv.a; sourceTree = "<group>"; };
 		A885C83A1F1560C400044997 /* RubberBandStretcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubberBandStretcher.h; sourceTree = "<group>"; };
 		A885C83C1F1560C400044997 /* librubberband.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librubberband.a; sourceTree = "<group>"; };
-		A895E83A1F08DF1000EEC4E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fb_funcs.c; sourceTree = "<group>"; };
-		A895E83D1F08DF1000EEC4E3 /* fb_funcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fb_funcs.h; sourceTree = "<group>"; };
-		A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFilterbank.cpp; sourceTree = "<group>"; };
-		A895E83F1F08DF1000EEC4E3 /* ofxFilterbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFilterbank.h; sourceTree = "<group>"; };
-		A895E8581F09882200EEC4E3 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
-		A895E85A1F09882200EEC4E3 /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
-		A895E85B1F09882200EEC4E3 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
-		A895E85C1F09882200EEC4E3 /* maxiAtoms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiAtoms.cpp; sourceTree = "<group>"; };
-		A895E85D1F09882200EEC4E3 /* maxiAtoms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiAtoms.h; sourceTree = "<group>"; };
-		A895E85E1F09882200EEC4E3 /* maxiBark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiBark.cpp; sourceTree = "<group>"; };
-		A895E85F1F09882200EEC4E3 /* maxiBark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiBark.h; sourceTree = "<group>"; };
-		A895E8601F09882200EEC4E3 /* maxiFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiFFT.cpp; sourceTree = "<group>"; };
-		A895E8611F09882200EEC4E3 /* maxiFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiFFT.h; sourceTree = "<group>"; };
-		A895E8621F09882200EEC4E3 /* maxiGrains.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiGrains.cpp; sourceTree = "<group>"; };
-		A895E8631F09882200EEC4E3 /* maxiGrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiGrains.h; sourceTree = "<group>"; };
-		A895E8641F09882200EEC4E3 /* maxiMFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiMFCC.cpp; sourceTree = "<group>"; };
-		A895E8651F09882200EEC4E3 /* maxiMFCC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiMFCC.h; sourceTree = "<group>"; };
-		A895E8661F09882200EEC4E3 /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maximilian.cpp; sourceTree = "<group>"; };
-		A895E8671F09882200EEC4E3 /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maximilian.h; sourceTree = "<group>"; };
-		A895E8681F09882200EEC4E3 /* sineTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sineTable.h; sourceTree = "<group>"; };
-		A895E8691F09882200EEC4E3 /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
-		A895E86A1F09882200EEC4E3 /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
-		A895E86C1F09882200EEC4E3 /* ofxMaxim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMaxim.h; sourceTree = "<group>"; };
+		A885C84F1F1697B000044997 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A885C8531F1697B000044997 /* ofxAubio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAubio.h; sourceTree = "<group>"; };
+		A885C8541F1697B000044997 /* ofxAubioBeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAubioBeat.cpp; sourceTree = "<group>"; };
+		A885C8551F1697B000044997 /* ofxAubioBeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAubioBeat.h; sourceTree = "<group>"; };
+		A885C8561F1697B000044997 /* ofxAubioBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAubioBlock.cpp; sourceTree = "<group>"; };
+		A885C8571F1697B000044997 /* ofxAubioBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAubioBlock.h; sourceTree = "<group>"; };
+		A885C8581F1697B000044997 /* ofxAubioMelBands.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAubioMelBands.cpp; sourceTree = "<group>"; };
+		A885C8591F1697B000044997 /* ofxAubioMelBands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAubioMelBands.h; sourceTree = "<group>"; };
+		A885C85A1F1697B000044997 /* ofxAubioOnset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAubioOnset.cpp; sourceTree = "<group>"; };
+		A885C85B1F1697B000044997 /* ofxAubioOnset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAubioOnset.h; sourceTree = "<group>"; };
+		A885C85C1F1697B000044997 /* ofxAubioPitch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAubioPitch.cpp; sourceTree = "<group>"; };
+		A885C85D1F1697B000044997 /* ofxAubioPitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAubioPitch.h; sourceTree = "<group>"; };
+		A885C86A1F169B3900044997 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = ../../../addons/ofxAubio/aubio.framework; sourceTree = "<group>"; };
+		A885C8781F16A73B00044997 /* AVFVP_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVFVP_Interface.h; sourceTree = "<group>"; };
+		A885C8791F16A78B00044997 /* AVFVP_Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVFVP_Wrapper.h; sourceTree = "<group>"; };
+		A885C87A1F16A82A00044997 /* AVFVP_Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVFVP_Wrapper.mm; sourceTree = "<group>"; };
+		A891EA0F1F1CE1A60012F58C /* soundfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = soundfile.cpp; sourceTree = "<group>"; };
+		A891EA101F1CE1A60012F58C /* soundfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = soundfile.h; sourceTree = "<group>"; };
 		A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = flite_voice_list.c; sourceTree = "<group>"; };
 		A8E3E8ED1F02BB9C007CF357 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
 		A8E3E8EE1F02BB9C007CF357 /* ofxBaseGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
@@ -361,7 +352,7 @@
 		A8E3E8FC1F02BB9C007CF357 /* ofxToggle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		A8E3E8FD1F02BB9C007CF357 /* ofxToggle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* emptyExampleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emptyExampleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* karaokebotDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = karaokebotDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
@@ -375,6 +366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A885C86C1F169D1500044997 /* aubio.framework in Frameworks */,
 				A885C83D1F1560EB00044997 /* librubberband.a in Frameworks */,
 				A83C85921F0836D60089D63D /* opencv.a in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
@@ -1002,6 +994,7 @@
 		A83C85931F0836E90089D63D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A885C86A1F169B3900044997 /* aubio.framework */,
 				A83C85941F0836E90089D63D /* osx */,
 			);
 			name = Frameworks;
@@ -1042,66 +1035,30 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		A895E8021F08DF1000EEC4E3 /* ofxFilterbank */ = {
+		A885C8411F1697B000044997 /* ofxAubio */ = {
 			isa = PBXGroup;
 			children = (
-				A895E83A1F08DF1000EEC4E3 /* README.md */,
-				A895E83B1F08DF1000EEC4E3 /* src */,
+				A885C84F1F1697B000044997 /* README.md */,
+				A885C8521F1697B000044997 /* src */,
 			);
-			name = ofxFilterbank;
-			path = ../../../addons/ofxFilterbank;
+			name = ofxAubio;
+			path = ../../../addons/ofxAubio;
 			sourceTree = "<group>";
 		};
-		A895E83B1F08DF1000EEC4E3 /* src */ = {
+		A885C8521F1697B000044997 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				A895E83C1F08DF1000EEC4E3 /* fb_funcs.c */,
-				A895E83D1F08DF1000EEC4E3 /* fb_funcs.h */,
-				A895E83E1F08DF1000EEC4E3 /* ofxFilterbank.cpp */,
-				A895E83F1F08DF1000EEC4E3 /* ofxFilterbank.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		A895E8571F09882200EEC4E3 /* ofxMaxim */ = {
-			isa = PBXGroup;
-			children = (
-				A895E8581F09882200EEC4E3 /* install.xml */,
-				A895E8591F09882200EEC4E3 /* libs */,
-				A895E86B1F09882200EEC4E3 /* src */,
-			);
-			name = ofxMaxim;
-			path = ../../../addons/ofxMaxim;
-			sourceTree = "<group>";
-		};
-		A895E8591F09882200EEC4E3 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				A895E85A1F09882200EEC4E3 /* fft.cpp */,
-				A895E85B1F09882200EEC4E3 /* fft.h */,
-				A895E85C1F09882200EEC4E3 /* maxiAtoms.cpp */,
-				A895E85D1F09882200EEC4E3 /* maxiAtoms.h */,
-				A895E85E1F09882200EEC4E3 /* maxiBark.cpp */,
-				A895E85F1F09882200EEC4E3 /* maxiBark.h */,
-				A895E8601F09882200EEC4E3 /* maxiFFT.cpp */,
-				A895E8611F09882200EEC4E3 /* maxiFFT.h */,
-				A895E8621F09882200EEC4E3 /* maxiGrains.cpp */,
-				A895E8631F09882200EEC4E3 /* maxiGrains.h */,
-				A895E8641F09882200EEC4E3 /* maxiMFCC.cpp */,
-				A895E8651F09882200EEC4E3 /* maxiMFCC.h */,
-				A895E8661F09882200EEC4E3 /* maximilian.cpp */,
-				A895E8671F09882200EEC4E3 /* maximilian.h */,
-				A895E8681F09882200EEC4E3 /* sineTable.h */,
-				A895E8691F09882200EEC4E3 /* stb_vorbis.c */,
-				A895E86A1F09882200EEC4E3 /* stb_vorbis.h */,
-			);
-			path = libs;
-			sourceTree = "<group>";
-		};
-		A895E86B1F09882200EEC4E3 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				A895E86C1F09882200EEC4E3 /* ofxMaxim.h */,
+				A885C8531F1697B000044997 /* ofxAubio.h */,
+				A885C8541F1697B000044997 /* ofxAubioBeat.cpp */,
+				A885C8551F1697B000044997 /* ofxAubioBeat.h */,
+				A885C8561F1697B000044997 /* ofxAubioBlock.cpp */,
+				A885C8571F1697B000044997 /* ofxAubioBlock.h */,
+				A885C8581F1697B000044997 /* ofxAubioMelBands.cpp */,
+				A885C8591F1697B000044997 /* ofxAubioMelBands.h */,
+				A885C85A1F1697B000044997 /* ofxAubioOnset.cpp */,
+				A885C85B1F1697B000044997 /* ofxAubioOnset.h */,
+				A885C85C1F1697B000044997 /* ofxAubioPitch.cpp */,
+				A885C85D1F1697B000044997 /* ofxAubioPitch.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1142,9 +1099,8 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				A885C8411F1697B000044997 /* ofxAubio */,
 				A885C8381F1560C400044997 /* ofxRubberBand */,
-				A895E8571F09882200EEC4E3 /* ofxMaxim */,
-				A895E8021F08DF1000EEC4E3 /* ofxFilterbank */,
 				A83C84A11F080DAE0089D63D /* ofxOpenCv */,
 				A83C83711F080D920089D63D /* ofxCv */,
 				A83C834B1F080BA20089D63D /* ofxTesseract */,
@@ -1170,7 +1126,7 @@
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				6948EE371B920CB800B5AC1A /* local_addons */,
-				E4B69B5B0A3A1756003C02F2 /* emptyExampleDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* karaokebotDebug.app */,
 				A83C85931F0836E90089D63D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1178,10 +1134,15 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A891EA0F1F1CE1A60012F58C /* soundfile.cpp */,
+				A891EA101F1CE1A60012F58C /* soundfile.h */,
 				A8A8F7CB1F024B6800673BD1 /* flite_voice_list.c */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				A885C8781F16A73B00044997 /* AVFVP_Interface.h */,
+				A885C8791F16A78B00044997 /* AVFVP_Wrapper.h */,
+				A885C87A1F16A82A00044997 /* AVFVP_Wrapper.mm */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1198,9 +1159,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4B69B5A0A3A1756003C02F2 /* emptyExample */ = {
+		E4B69B5A0A3A1756003C02F2 /* karaokebot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "emptyExample" */;
+			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "karaokebot" */;
 			buildPhases = (
 				E4B69B580A3A1756003C02F2 /* Sources */,
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
@@ -1212,9 +1173,9 @@
 			dependencies = (
 				E4EEB9AC138B136A00A80321 /* PBXTargetDependency */,
 			);
-			name = emptyExample;
+			name = karaokebot;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* emptyExampleDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* karaokebotDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1225,7 +1186,7 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 			};
-			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "emptyExample" */;
+			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "karaokebot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1246,7 +1207,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				E4B69B5A0A3A1756003C02F2 /* emptyExample */,
+				E4B69B5A0A3A1756003C02F2 /* karaokebot */,
 			);
 		};
 /* End PBXProject section */
@@ -1284,42 +1245,38 @@
 			files = (
 				A8D1DA011F0BC051000A77A7 /* Calibration.cpp in Sources */,
 				A8D1DA021F0BC051000A77A7 /* ContourFinder.cpp in Sources */,
+				A891EA111F1CE1A60012F58C /* soundfile.cpp in Sources */,
 				A8D1DA031F0BC051000A77A7 /* Distance.cpp in Sources */,
 				A8D1DA041F0BC051000A77A7 /* Flow.cpp in Sources */,
+				A885C8661F1697B000044997 /* ofxAubioOnset.cpp in Sources */,
 				A8D1DA051F0BC051000A77A7 /* Helpers.cpp in Sources */,
 				A8D1DA061F0BC051000A77A7 /* Kalman.cpp in Sources */,
 				A8D1DA071F0BC051000A77A7 /* ObjectFinder.cpp in Sources */,
 				A8D1DA081F0BC051000A77A7 /* RunningBackground.cpp in Sources */,
+				A885C8671F1697B000044997 /* ofxAubioPitch.cpp in Sources */,
 				A8D1DA091F0BC051000A77A7 /* Tracker.cpp in Sources */,
 				A8D1DA0A1F0BC051000A77A7 /* Utilities.cpp in Sources */,
 				A8D1DA0B1F0BC051000A77A7 /* Wrappers.cpp in Sources */,
-				A895E8741F09882200EEC4E3 /* stb_vorbis.c in Sources */,
 				A83C858B1F0836B40089D63D /* ofxCvColorImage.cpp in Sources */,
-				A895E8701F09882200EEC4E3 /* maxiFFT.cpp in Sources */,
-				A895E86E1F09882200EEC4E3 /* maxiAtoms.cpp in Sources */,
 				A83C858C1F0836B40089D63D /* ofxCvContourFinder.cpp in Sources */,
 				A83C858D1F0836B40089D63D /* ofxCvFloatImage.cpp in Sources */,
+				A885C8631F1697B000044997 /* ofxAubioBeat.cpp in Sources */,
+				A885C87B1F16A82A00044997 /* AVFVP_Wrapper.mm in Sources */,
 				A83C858E1F0836B40089D63D /* ofxCvGrayscaleImage.cpp in Sources */,
 				A83C858F1F0836B40089D63D /* ofxCvHaarFinder.cpp in Sources */,
 				A83C85901F0836B40089D63D /* ofxCvImage.cpp in Sources */,
-				A895E86F1F09882200EEC4E3 /* maxiBark.cpp in Sources */,
 				A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */,
-				A895E8711F09882200EEC4E3 /* maxiGrains.cpp in Sources */,
 				A83C85891F081B9A0089D63D /* ofxTesseract.cpp in Sources */,
 				A8E3E9001F02BD30007CF357 /* ofxBaseGui.cpp in Sources */,
+				A885C8651F1697B000044997 /* ofxAubioMelBands.cpp in Sources */,
 				A8E3E9011F02BD30007CF357 /* ofxButton.cpp in Sources */,
-				A895E84E1F08DF1000EEC4E3 /* README.md in Sources */,
-				A895E84F1F08DF1000EEC4E3 /* fb_funcs.c in Sources */,
-				A895E8501F08DF1000EEC4E3 /* ofxFilterbank.cpp in Sources */,
 				A8E3E9021F02BD30007CF357 /* ofxGuiGroup.cpp in Sources */,
 				A8E3E9031F02BD30007CF357 /* ofxLabel.cpp in Sources */,
 				A8E3E9041F02BD30007CF357 /* ofxPanel.cpp in Sources */,
 				A8E3E9051F02BD30007CF357 /* ofxSlider.cpp in Sources */,
-				A895E8721F09882200EEC4E3 /* maxiMFCC.cpp in Sources */,
 				A8E3E9061F02BD30007CF357 /* ofxSliderGroup.cpp in Sources */,
-				A895E8731F09882200EEC4E3 /* maximilian.cpp in Sources */,
 				A8E3E9071F02BD30007CF357 /* ofxToggle.cpp in Sources */,
-				A895E86D1F09882200EEC4E3 /* fft.cpp in Sources */,
+				A885C8641F1697B000044997 /* ofxAubioBlock.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				A8A8F7CE1F024B6800673BD1 /* flite_voice_list.c in Sources */,
@@ -1412,6 +1369,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					../../../addons/ofxAubio,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1428,6 +1386,8 @@
 					../../../addons/ofxOpenCv/libs/opencv/include/,
 					../../../addons/ofxCv/libs/ofxCv/include/,
 					../../../addons/ofxRubberBand/include,
+					../../../addons/ofxAubio/aubio.framework/Headers,
+					/usr/local/opt/mpg123/include,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1438,8 +1398,9 @@
 					/usr/local/lib,
 					/usr/local/opt/tesseract/lib,
 					../../../addons/ofxRubberBand/lib,
+					/usr/local/opt/mpg123/lib,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
 					"$(OF_CORE_FRAMEWORKS)",
@@ -1447,6 +1408,7 @@
 					/usr/local/lib/libflhtse.a,
 					/usr/local/opt/tesseract/lib/libtesseract.a,
 					/usr/local/opt/leptonica/lib/liblept.a,
+					/usr/local/opt/mpg123/lib/libmpg123.dylib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -1462,6 +1424,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					../../../addons/ofxAubio,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1477,6 +1440,8 @@
 					../../../addons/ofxOpenCv/libs/opencv/include/,
 					../../../addons/ofxCv/libs/ofxCv/include/,
 					../../../addons/ofxRubberBand/include,
+					../../../addons/ofxAubio/aubio.framework/Headers,
+					/usr/local/opt/mpg123/include,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1487,8 +1452,9 @@
 					/usr/local/lib,
 					/usr/local/opt/tesseract/lib,
 					../../../addons/ofxRubberBand/lib,
+					/usr/local/opt/mpg123/lib,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
 					"$(OF_CORE_FRAMEWORKS)",
@@ -1496,6 +1462,7 @@
 					/usr/local/lib/libflhtse.a,
 					/usr/local/opt/tesseract/lib/libtesseract.a,
 					/usr/local/opt/leptonica/lib/liblept.a,
+					/usr/local/opt/mpg123/lib/libmpg123.dylib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1506,7 +1473,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "emptyExample" */ = {
+		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "karaokebot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B4E0A3A1720003C02F2 /* Debug */,
@@ -1515,7 +1482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "emptyExample" */ = {
+		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "karaokebot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B600A3A1757003C02F2 /* Debug */,

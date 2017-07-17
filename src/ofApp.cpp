@@ -14,7 +14,9 @@ extern "C"{
 #define LIN2dB(x) (double)(20. * log10(x))
 #define SR 44100
 
-#define USING_MAXIMILIAN
+#define USING_RUBBERBAND
+
+#define maxProcessSize 512
 
 bool isUsingGUI = true;
 
@@ -51,29 +53,54 @@ void ofApp::setup(){
     
     
     /// initialize the sound
-    int bufferSize		= 512;
-    sampleRate 			= 48000;
-    volume				= 0.5f;
+    int bufferSize = 512;
+    sampleRate = 48000;
+    volume = 0.5f;
     
     
     int midiMin = 21;
     int midiMax = 108;
     
-    // now make filterbank so we can figure out the sounds
-    filterBank.setup(bufferSize, midiMin, midiMax, 2, BANDWITH, sampleRate, 1.0);
-    filterBank.setColor(ofColor::orange);
+    // aubio stuff
+    // setup onset object
+    onset.setup();
+    //onset.setup("mkl", 2 * bufferSize, bufferSize, sampleRate);
+    // listen to onset event
+    ofAddListener(onset.gotOnset, this, &ofApp::onsetEvent);
     
-    /// maxi setup
-    ofxMaxiSettings::setup(sampleRate, 2, bufferSize);
-    speed = 1;
-    grainLength = 0.05;
+    // setup pitch object
+    pitch.setup();
+    //pitch.setup("yinfft", 8 * bufferSize, bufferSize, sampleRate);
     
-//    samp.load(ofToDataPath("tmp.wav"));
-//    timeStretch = new maxiTimePitchStretch<hannWinFunctor, maxiSample>(&samp);
+    // setup beat object
+    beat.setup();
+    //beat.setup("default", 2 * bufferSize, bufferSize, samplerate);
+    // listen to beat event
+    ofAddListener(beat.gotBeat, this, &ofApp::beatEvent);
+    
+    // set up the rubberband
+    rubberband = new RubberBand::RubberBandStretcher(sampleRate, 2,
+                                                     RubberBand::RubberBandStretcher::DefaultOptions |
+                                                     RubberBand::RubberBandStretcher::OptionProcessRealTime);
+    rubberband->setMaxProcessSize(maxProcessSize);
+    rubberband->setPitchScale(std::pow(2.0, 6.0 / 12.0));
+    
+    stretchInBufL.resize(maxProcessSize);
+    stretchInBufR.resize(maxProcessSize);
+    stretchInBuf.resize(2);
+    stretchInBuf[0] = &(stretchInBufL[0]);
+    stretchInBuf[1] = &(stretchInBufR[0]);
+    
+    stretchOutBufL.resize(maxProcessSize);
+    stretchOutBufR.resize(maxProcessSize);
+    stretchOutBuf.resize(2);
+    stretchOutBuf[0] = &(stretchOutBufL[0]);
+    stretchOutBuf[1] = &(stretchOutBufR[0]);
+    
     
     // finally the OF setup
     soundStream.setDeviceID(1); 	//note some devices are input only and some are output only
-    soundStream.setup(this, 2, 0, sampleRate, bufferSize, 4);
+    soundStream.setup(this, 2, 2, sampleRate, bufferSize, 4);
     
     // tesseract - void setup(string dataPath = "", bool absolute = false, string language = "eng");
     tess.setup("", false, "eng");
@@ -87,10 +114,12 @@ void ofApp::setup(){
     vidGrabber.initGrabber(640, 480);
     
 #else
-    
+
     vidPlayer.load("cant_help_falling.mov");
     vidPlayer.setVolume(0);
     vidPlayer.play();
+    
+    soundFile.load("cant_help_falling.mp3");
     
 #endif
     
@@ -124,7 +153,7 @@ void ofApp::update(){
         ofxCv::convertColor(vidPlayer, thresh, CV_RGB2GRAY);
         thresh.update();
     }
-
+    
 #endif
 
 }
@@ -211,10 +240,18 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void ofApp::audioIn(float * input, int bufferSize, int nChannels){
+
+#ifdef USING_CAMERA
+ 
+    // compute onset detection
+    onset.audioIn(input, bufferSize, nChannels);
+    // compute pitch detection
+    pitch.audioIn(input, bufferSize, nChannels);
+    // compute beat location
+    beat.audioIn(input, bufferSize, nChannels);
     
-    //Analyze Input Buffer with ofxFilterbank
-    filterBank.analyze(input);
-    
+#endif
+
 }
 
 //--------------------------------------------------------------
@@ -222,29 +259,71 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
     
     double x;
     short temp;
-    int i = loadedSamples;
     
-#ifdef USING_MAXIMILIAN
+#ifndef USING_CAMERA
     
-    for (int i = 0; i < bufferSize; i++){
-        if(timeStretch != NULL ) {
-            double wave = timeStretch->playOnce( 1.0, 1.0, grainLength, 4, 0 );
-            output[i * nChannels    ] = wave;
-            output[i * nChannels + 1] = wave;
+    // get the
+    float sfBuffer[bufferSize];
+    memcpy(&sfBuffer[0], &soundFile.getSamples()[soundFilePlayhead], bufferSize);
+    
+    // compute onset detection
+    onset.audioIn(sfBuffer, bufferSize, nChannels);
+    // compute pitch detection
+    pitch.audioIn(sfBuffer, bufferSize, nChannels);
+    // compute beat location
+    beat.audioIn(sfBuffer, bufferSize, nChannels);
+    
+    
+#endif
+    
+    
+    //TODO: fix playhead pos problem
+    
+    int i = loadedSamples; // increment number loaded so far
+    while (rubberband->available() < bufferSize)
+    {
+        
+        int j;
+        for (j = 0;
+             j < bufferSize && i < availableSamples;
+             i++, j++)
+        {
+            stretchInBufL[j] = inputSamples[i] * 0.001 * volume;
+            stretchInBufR[j] = inputSamples[i] * 0.001 * volume;
         }
+        while (j < maxProcessSize)
+        {
+            stretchInBufL[j] = 0;
+            stretchInBufR[j] = 0;
+            j++;
+        }
+        
+        rubberband->process(&(stretchInBuf[0]), maxProcessSize, false);
+        samplePlayPosition += maxProcessSize;
+    }
+    
+    // now swap back
+    loadedSamples = i;
+    
+    size_t samplesRetrieved = rubberband->retrieve(&(stretchOutBuf[0]), bufferSize);
+    
+    // Interleave output from rubberband into audio output
+    for (i = 0; i < samplesRetrieved && i < bufferSize; i++) {
+        output[i * nChannels] = stretchOutBufL[i];
+        output[i * nChannels + 1] = stretchOutBufR[i];
     }
 
     
-#else
+//    int i = loadedSamples;
+//    for (int j = 0; j < bufferSize && i < availableSamples; i++, j++) {
+//        float(x) = HTS_Engine_get_generated_speech((HTS_Engine*)&engine, i);
+//        
+//        // fill of sound buffer
+//        output[j*nChannels    ] = x * 0.001 * volume;
+//        output[j*nChannels + 1] = x * 0.001 * volume;
+//    }
+//    loadedSamples = i;
     
-    for (int j = 0; j < bufferSize && i < availableSamples; i++, j++) {
-        float(x) = HTS_Engine_get_generated_speech((HTS_Engine*)&engine, i);
-        
-        // fill of sound buffer
-        output[j*nChannels    ] = x * 0.001 * volume;
-        output[j*nChannels + 1] = x * 0.001 * volume;
-    }
-    loadedSamples = i;
     
     if(availableSamples > 0 && loadedSamples >= availableSamples) {
         
@@ -261,30 +340,8 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
         availableSamples = 0;
         loadedSamples = 0;
     }
-#endif
-}
 
-int ofApp::calcHighestEnergy()
-{
-    float *energies = filterBank.getSmthEnergies();
     
-    int highestEnergy = 0;
-    int highestEnergyIndex = -1.0;
-    int i = 0;
-    
-//    if(energies != NULL ) {
-//        while( &energies[i] != NULL )
-//        {
-//            if(energies[i] > highestEnergyIndex)
-//            {
-//                highestEnergy = i;
-//                highestEnergyIndex = energies[i];
-//            }
-//            i++;
-//        }
-//    }
-    
-    return highestEnergyIndex;
 }
 
 void ofApp::synthNewSpeech(string utterance)
@@ -299,8 +356,7 @@ void ofApp::synthNewSpeech(string utterance)
         
     } else {
         
-        int highest = calcHighestEnergy();
-        int adjustedPitchRange = (highest - 100)/3; // ???
+        int adjustedPitchRange = 1.0; // ???
         
         Flite_HTS_Engine_add_half_tone(&engine, adjustedPitchRange);
         Flite_HTS_Engine_set_alpha(&engine, alphaSlider);
@@ -344,24 +400,33 @@ void ofApp::synthNewSpeech(string utterance)
     HTS_GStreamSet *gss = &( (HTS_Engine*)&engine)->gss;
     availableSamples = HTS_Engine_get_nsamples((HTS_Engine*)&engine);
     
-    // put these into the maxim player here?
+#ifdef USING_RUBBERBAND
     
-    // clear memory
-    delete[] maxiSampleInst.temp;
-    
-    // allocate new buffer
-    maxiSampleInst.temp = new short[availableSamples];
-    maxiSampleInst.myDataSize = availableSamples * 2;
-    
+    samplePlayPosition = 0;
+
     // make a new sample
     for (int i = 0; i < availableSamples; i++ ) {
         float x = HTS_Engine_get_generated_speech((HTS_Engine*)&engine, i);
-        maxiSampleInst.temp[i] = x;
+        inputSamples.push_back(x);
     }
     
-    timeStretch = new maxiTimePitchStretch<hannWinFunctor, maxiSample>(&maxiSampleInst);
     ofLog( OF_LOG_NOTICE, ofToString(availableSamples));
+    
+#endif
 
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+// aubio methods
+///////////////////////////////////////////////////////////////////////////////////////
+
+void ofApp::onsetEvent(float & time) {
+    ofLog() << "got onset at " << time << " s";
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+void ofApp::beatEvent(float & time) {
+    ofLog() << "got beat at " << time << " s";
 }
 
 
@@ -371,11 +436,12 @@ string ofApp::runOcr(ofPixels& pix, float scale, int medianSize) {
     return tess.findText(pix);
 }
 
+
+
 void ofApp::exit()
 {
     soundStream.stop();
     soundStream.close();
-    filterBank.exit();
     
     //Flite_HTS_Engine_clear(&engine);
 }
