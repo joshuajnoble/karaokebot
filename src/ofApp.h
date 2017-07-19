@@ -125,7 +125,11 @@ class ofApp : public ofBaseApp{
 
     std::vector<float> inputSamples;
     
+    
+    float sfBuffer[512];
     int samplePlayPosition, soundFilePlayhead;
+    
+    deque<float> pitchBuffer;
     
     
 };
