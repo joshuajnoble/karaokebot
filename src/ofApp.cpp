@@ -346,8 +346,8 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
     
         // Interleave output from rubberband into audio output
         for (i = 0; i < samplesRetrieved && i < bufferSize; i++) {
-            output[i * nChannels] = stretchOutBufL[i];
-            output[i * nChannels + 1] = stretchOutBufR[i];
+            //output[i * nChannels] = stretchOutBufL[i];
+            //output[i * nChannels + 1] = stretchOutBufR[i];
         }
     }
     
