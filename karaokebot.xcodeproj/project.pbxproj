@@ -16,6 +16,7 @@
 		A83C85901F0836B40089D63D /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85841F080DAE0089D63D /* ofxCvImage.cpp */; };
 		A83C85911F0836B40089D63D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A83C85861F080DAE0089D63D /* ofxCvShortImage.cpp */; };
 		A83C85921F0836D60089D63D /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83C856F1F080DAE0089D63D /* opencv.a */; };
+		A8855E521F22AA6E00BE4424 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A8855E511F22AA6E00BE4424 /* README.md */; };
 		A885C83D1F1560EB00044997 /* librubberband.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A885C83C1F1560C400044997 /* librubberband.a */; };
 		A885C8631F1697B000044997 /* ofxAubioBeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A885C8541F1697B000044997 /* ofxAubioBeat.cpp */; };
 		A885C8641F1697B000044997 /* ofxAubioBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A885C8561F1697B000044997 /* ofxAubioBlock.cpp */; };
@@ -313,6 +314,7 @@
 		A83C85871F080DAE0089D63D /* ofxCvShortImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCvShortImage.h; sourceTree = "<group>"; };
 		A83C85881F080DAE0089D63D /* ofxOpenCv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		A83C85951F0836E90089D63D /* opencv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = opencv.a; sourceTree = "<group>"; };
+		A8855E511F22AA6E00BE4424 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A885C83A1F1560C400044997 /* RubberBandStretcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubberBandStretcher.h; sourceTree = "<group>"; };
 		A885C83C1F1560C400044997 /* librubberband.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librubberband.a; sourceTree = "<group>"; };
 		A885C84F1F1697B000044997 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1120,6 +1122,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				A8855E511F22AA6E00BE4424 /* README.md */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -1275,6 +1278,7 @@
 				A8E3E9041F02BD30007CF357 /* ofxPanel.cpp in Sources */,
 				A8E3E9051F02BD30007CF357 /* ofxSlider.cpp in Sources */,
 				A8E3E9061F02BD30007CF357 /* ofxSliderGroup.cpp in Sources */,
+				A8855E521F22AA6E00BE4424 /* README.md in Sources */,
 				A8E3E9071F02BD30007CF357 /* ofxToggle.cpp in Sources */,
 				A885C8641F1697B000044997 /* ofxAubioBlock.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
@@ -1395,7 +1399,6 @@
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/lib,
 					/usr/local/opt/tesseract/lib,
 					../../../addons/ofxRubberBand/lib,
 					/usr/local/opt/mpg123/lib,
@@ -1404,8 +1407,8 @@
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
 					"$(OF_CORE_FRAMEWORKS)",
-					/usr/local/lib/libHTSEngine.a,
-					/usr/local/lib/libflhtse.a,
+					lib/libHTSEngine.a,
+					lib/libflhtse.a,
 					/usr/local/opt/tesseract/lib/libtesseract.a,
 					/usr/local/opt/leptonica/lib/liblept.a,
 					/usr/local/opt/mpg123/lib/libmpg123.dylib,
@@ -1449,7 +1452,6 @@
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/lib,
 					/usr/local/opt/tesseract/lib,
 					../../../addons/ofxRubberBand/lib,
 					/usr/local/opt/mpg123/lib,
@@ -1458,8 +1460,8 @@
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
 					"$(OF_CORE_FRAMEWORKS)",
-					/usr/local/lib/libHTSEngine.a,
-					/usr/local/lib/libflhtse.a,
+					lib/libHTSEngine.a,
+					lib/libflhtse.a,
 					/usr/local/opt/tesseract/lib/libtesseract.a,
 					/usr/local/opt/leptonica/lib/liblept.a,
 					/usr/local/opt/mpg123/lib/libmpg123.dylib,
