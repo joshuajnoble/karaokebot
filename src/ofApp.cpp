@@ -29,6 +29,11 @@ int tone = 0;
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    lastOCRRun = 0.f;
+    currentOCRString = "";
+    
+    //////// flite
+    
     availableSamples = 0;
     loadedSamples = 0;
 
@@ -51,6 +56,7 @@ void ofApp::setup(){
     gui.add(alphaSlider.setup("alpha", 0.57, -1.0, 1.0));
     gui.add(betaSlider.setup("beta", -0.6, -1.0, 1.0));
     
+    isCurrentlySpeaking = false;
     
     /// initialize the sound
     int bufferSize = 512;
@@ -158,39 +164,53 @@ void ofApp::update(){
     
     if(soundFile.isLoaded()) {
         
-        // compute onset detection
-        uint64_t m = ofGetElapsedTimeMillis();
-        //        onset.audioIn(&soundFile.getSamples()[soundFilePlayhead], bufferSize, nChannels);
+        //onset.audioIn(&soundFile.getSamples()[soundFilePlayhead], bufferSize, nChannels);
         // compute pitch detection
         pitch.audioIn(&soundFile.getSamples()[soundFilePlayhead], 1024, 2);
         // compute beat location
         beat.audioIn(&soundFile.getSamples()[soundFilePlayhead], 1024, 2);
-        
-        soundFilePlayhead += 1024;
     }
     
     if( availableSamples > 0 ) {
         
-        if(pitchBuffer.size() > 5) {
+        if(pitchBuffer.size() > 20) {
             pitchBuffer.pop_front();
         }
         
-        pitchBuffer.push_back(std::pow(2.0, ((pitch.latestPitch - 40) / 4) / 12.0));
+        pitchBuffer.push_back(std::pow(2.0, ((pitch.latestPitch - 40) / 6) / 12.0));
         
         float summedPitch = 0;
         for( int i = 0; i < pitchBuffer.size(); i++ ) {
             summedPitch += pitchBuffer.at(i);
         }
         
-        cout << summedPitch/pitchBuffer.size()  << endl;
         rubberband->setPitchScale(summedPitch/pitchBuffer.size()); //rubberband->setPitchScale( pitch.latestPitch/40.0);
-        //rubberband->setTimeRatio( (600 - beat.bpm)/100.0 );
-        
-        //cout << pitch.latestPitch << " " << beat.bpm << endl;
+        //rubberband->setTimeRatio( max(0.5, 2.0 - (beat.bpm/100.0)));
     }
     
     
 #endif
+    
+    if(ofGetElapsedTimef() - lastOCRRun > 2.0 && !isCurrentlySpeaking)
+    {
+        
+        // what OCR do we have?
+        string toBeSaid = runOcr( thresh, 0, 0);
+        
+        cout << toBeSaid << endl;
+        cout << currentOCRString << endl;
+        
+        // got a new string?
+        if(currentOCRString != toBeSaid && toBeSaid != "")
+        {
+            currentOCRString = toBeSaid;
+            ocrResults = ofSplitString(toBeSaid, "\n");
+            currentSubString = ocrResults.begin();
+
+            synthNewSpeech(*currentSubString);
+        }
+        lastOCRRun = ofGetElapsedTimef();
+    }
 
 }
 
@@ -211,15 +231,11 @@ void ofApp::keyPressed(int key){
     
     
     if( key == OF_KEY_RETURN) {
-        cout << "setting variables " << endl;
-
-        flipImage = vidGrabber.getPixels();
-        //flipImage.mirror(true, false);
 
         string toBeSaid = runOcr( thresh, 0, 0);
-        cout << toBeSaid << endl;
-        
-        synthNewSpeech(toBeSaid);
+        ocrResults = ofSplitString(toBeSaid, "\n");
+        currentSubString = ocrResults.begin();
+        synthNewSpeech(*currentSubString);
         
     }
 
@@ -326,10 +342,13 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
     
     size_t samplesRetrieved = rubberband->retrieve(&(stretchOutBuf[0]), bufferSize);
     
-    // Interleave output from rubberband into audio output
-    for (i = 0; i < samplesRetrieved && i < bufferSize; i++) {
-        output[i * nChannels] = stretchOutBufL[i];
-        output[i * nChannels + 1] = stretchOutBufR[i];
+    if( soundFile.isLoaded() ) {
+    
+        // Interleave output from rubberband into audio output
+        for (i = 0; i < samplesRetrieved && i < bufferSize; i++) {
+            output[i * nChannels] = stretchOutBufL[i];
+            output[i * nChannels + 1] = stretchOutBufR[i];
+        }
     }
     
     if(availableSamples > 0 && loadedSamples >= availableSamples) {
@@ -348,7 +367,32 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels){
         
         availableSamples = 0;
         loadedSamples = 0;
+        
+        
+        ++currentSubString;
+        while(*currentSubString == "" && currentSubString != ocrResults.end()) {
+            ++currentSubString;
+        }
+        
+        // totally finished with everything on the screen
+        if(currentSubString == ocrResults.end()) {
+            ocrResults.clear();
+            isCurrentlySpeaking = false;
+        } else {
+            if(*currentSubString != "") {
+                synthNewSpeech(*currentSubString);
+            }
+        }
+        
     }
+    
+    
+    // if we're reading from an MP3 file
+#ifndef USING_CAMERA
+    
+    soundFilePlayhead += bufferSize;
+    
+#endif
 
     
 }
@@ -357,7 +401,9 @@ void ofApp::synthNewSpeech(string utterance)
 {
     
     //beat.bpm)/100.0
-    Flite_HTS_Engine_set_speed(&engine, (beat.bpm/300.0));
+    if(beat.bpm > 40.0) {
+        Flite_HTS_Engine_set_speed(&engine, (beat.bpm/400.0));
+    }
     
     if( isUsingGUI ) {
     
@@ -370,7 +416,7 @@ void ofApp::synthNewSpeech(string utterance)
         
         int adjustedPitchRange = 1.0; // ???
         
-        Flite_HTS_Engine_add_half_tone(&engine, adjustedPitchRange);
+        Flite_HTS_Engine_add_half_tone(&engine, pitch.latestPitch);
         Flite_HTS_Engine_set_alpha(&engine, alphaSlider);
         Flite_HTS_Engine_set_beta(&engine, betaSlider);
         
@@ -411,6 +457,8 @@ void ofApp::synthNewSpeech(string utterance)
     
     HTS_GStreamSet *gss = &( (HTS_Engine*)&engine)->gss;
     availableSamples = HTS_Engine_get_nsamples((HTS_Engine*)&engine);
+    
+    isCurrentlySpeaking = true;
     
 #ifdef USING_RUBBERBAND
     
@@ -464,7 +512,40 @@ void ofApp::beatEvent(float & time) {
 // see what we see
 string ofApp::runOcr(ofPixels& pix, float scale, int medianSize) {
     
-    return tess.findText(pix);
+    tess.findText(pix);
+    
+    string acceptedWords;
+    
+    int lcount = 1;
+    tesseract::PageIteratorLevel level = tesseract::RIL_WORD;
+    
+    tesseract::ResultIterator* ri = tess.getTess().GetIterator();
+    if (ri != 0) {
+        do {
+            const char* word = ri->GetUTF8Text(tesseract::RIL_WORD);
+            float conf = ri->Confidence(level);
+            
+            if (word != 0 && conf > 70) {
+                const char *font_name;
+                bool bold, italic, underlined, monospace, serif, smallcaps;
+                int pointsize, font_id;
+                
+                font_name = ri->WordFontAttributes(&bold, &italic, &underlined,
+                                                   &monospace, &serif,
+                                                   &smallcaps, &pointsize,
+                                                   &font_id);
+                
+                
+                if(pointsize > 10) {
+                    acceptedWords += word;
+                    acceptedWords += " ";
+                }
+            }
+            delete[] word;
+            lcount++;
+        } while (ri->Next(tesseract::RIL_WORD));
+    }
+    return acceptedWords;
 }
 
 

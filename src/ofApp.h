@@ -70,7 +70,8 @@ class ofApp : public ofBaseApp{
     string runOcr(ofPixels& pix, float scale, int medianSize);
     
     ofxTesseract tess;
-    string ocrResult;
+    vector<string> ocrResults;
+    vector<string>::iterator currentSubString;
 
     ofImage rgbImage;
     ofImage flipImage;
@@ -89,6 +90,7 @@ class ofApp : public ofBaseApp{
     ofSoundStream soundStream;
     int loadedSamples;
     int availableSamples;
+    bool isCurrentlySpeaking;
     
     ofxPanel gui;
     ofxFloatSlider toneSlider;
@@ -130,6 +132,9 @@ class ofApp : public ofBaseApp{
     int samplePlayPosition, soundFilePlayhead;
     
     deque<float> pitchBuffer;
+    
+    float lastOCRRun;
+    string currentOCRString;
     
     
 };
