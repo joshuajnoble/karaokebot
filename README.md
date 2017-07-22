@@ -10,8 +10,11 @@ Do:
 then get the following addons:
 
 ofxAubio
+
 ofxRubberBand
+
 ofxOpenCv
+
 ofxTesseract
 
 Now you should be able to run this, yay!
